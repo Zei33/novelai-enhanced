@@ -73,6 +73,21 @@ module.exports = {
       ],
     },
 
+    // Preload scripts (CommonJS)
+    {
+      files: ["**/src/preload/**/*.{js,ts}"],
+      parserOptions: {
+        sourceType: "commonjs",
+      },
+      env: {
+        node: true,
+        browser: false,
+      },
+      rules: {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+
     // Node
     {
       files: [".eslintrc.cjs"],
