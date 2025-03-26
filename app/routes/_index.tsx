@@ -1,19 +1,25 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Flex, Button } from "@radix-ui/themes";
+import RadixExample from "~/components/RadixExample";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
+	return [
+		{ title: "NovelAI Enhanced" },
+		{ name: "description", content: "An enhanced UI interface for NovelAI" },
+	];
 };
 
 export default function Index() {
 	const handlePing = () => alert(window.api.ping());
   
 	return (
-		<button onClick={handlePing}>
-			Ping Electron IPC
-		</button>
+		<Flex direction="column" gap="4" p="4">
+			<Button onClick={handlePing}>
+				Ping Electron IPC
+			</Button>
+			
+			<RadixExample />
+		</Flex>
 	);
 }
   

@@ -11,6 +11,7 @@ This application provides an improved user interface for interacting with NovelA
 ```
 novelai-enhanced/
 ├── app/                  # Remix application code
+│   ├── components/       # Reusable UI components
 │   ├── routes/           # Application routes
 │   ├── entry.client.tsx  # Client entry point
 │   ├── entry.server.tsx  # Server entry point
@@ -73,6 +74,17 @@ pnpm run electron
 - TypeScript
 - TailwindCSS
 - Vite
+- Radix UI (for accessible UI components)
+
+## Radix UI Integration
+
+This project uses Radix UI for building accessible and customizable UI components:
+
+- **Theme Provider**: Set up in `app/root.tsx` to provide consistent theming
+- **Component Usage**: Import components from `@radix-ui/themes` or specific primitives like `@radix-ui/react-dialog`
+- **Example Component**: See `app/components/RadixExample.tsx` for usage examples
+
+For more information on Radix UI components, visit [Radix UI documentation](https://www.radix-ui.com/primitives/docs/overview/introduction).
 
 ## License
 
