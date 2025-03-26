@@ -1,5 +1,14 @@
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
+// Create global initialization object to help with app startup
+contextBridge.exposeInMainWorld('electronAppInit', {
+	isElectron: true,
+	platform: process.platform
+});
+
+// Expose API methods
 contextBridge.exposeInMainWorld('api', {
-  ping: () => 'pong from Electron!',
+	suggestTags: async (prompt: string) => {
+		return await ipcRenderer.invoke('suggest-tags', prompt);
+	},
 });

@@ -10,12 +10,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-	const handlePing = () => alert(window.api.ping());
+	const handleSuggestTags = () => window.api.suggestTags("moun").then(result => alert(JSON.stringify(result)));
   
 	return (
 		<Flex direction="column" gap="4" p="4">
-			<Button onClick={handlePing}>
-				Ping Electron IPC
+			<Button onClick={handleSuggestTags}>
+				Suggest Tag
 			</Button>
 			
 			<RadixExample />
@@ -26,7 +26,7 @@ export default function Index() {
 declare global {
 	interface Window {
 		api: {
-			ping: () => string;
+			suggestTags: (prompt: string) => Promise<string>;
 		};
 	}
 }

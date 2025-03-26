@@ -24,6 +24,19 @@ module.exports = {
   // Base config
   extends: ["eslint:recommended"],
 
+  // Custom settings for import resolution
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [
+          ["#api", "./src/api"],
+          ["~", "./app"]
+        ],
+        extensions: [".ts", ".js", ".json"]
+      }
+    }
+  },
+
   overrides: [
     // React
     {
@@ -46,6 +59,13 @@ module.exports = {
         ],
         "import/resolver": {
           typescript: {},
+          alias: {
+            map: [
+              ["#api", "./src/api"],
+              ["~", "./app"]
+            ],
+            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+          }
         },
       },
     },
@@ -55,6 +75,9 @@ module.exports = {
       files: ["**/*.{ts,tsx}"],
       plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: "./tsconfig.eslint.json"
+      },
       settings: {
         "import/internal-regex": "^~/",
         "import/resolver": {
@@ -63,7 +86,15 @@ module.exports = {
           },
           typescript: {
             alwaysTryTypes: true,
+            project: "./tsconfig.eslint.json"
           },
+          alias: {
+            map: [
+              ["#api", "./src/api"],
+              ["~", "./app"]
+            ],
+            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+          }
         },
       },
       extends: [
@@ -76,8 +107,10 @@ module.exports = {
     // Preload scripts (CommonJS)
     {
       files: ["**/src/preload/**/*.{js,ts}"],
+      parser: "@typescript-eslint/parser",
       parserOptions: {
         sourceType: "commonjs",
+        project: null
       },
       env: {
         node: true,
