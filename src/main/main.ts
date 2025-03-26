@@ -138,8 +138,21 @@ function createWindow() {
 
 // Setup API and IPC handlers
 function setupIPC() {
-	// Initialize the NovelAI API
-	const api = new NovelAIAPI(process.env.API_TOKEN);
+	// Initialize the NovelAI API with a default token if available
+	let api = new NovelAIAPI(process.env.API_TOKEN || '');
+
+	// Handle setting API key from the renderer process
+	ipcMain.handle('set-api-key', async (event, apiKey: string) => {
+		try {
+			// Reinitialize the API with the new key
+			api = new NovelAIAPI(apiKey);
+			console.log('API key updated successfully');
+			return { success: true };
+		} catch (error) {
+			console.error('Error setting API key:', error);
+			return { error: 'Failed to set API key' };
+		}
+	});
 
 	// Register IPC handlers
 	ipcMain.handle('suggest-tags', async (event, prompt: string) => {
@@ -151,8 +164,8 @@ function setupIPC() {
 			console.log(response);
 			return response;
 		} catch (error) {
-			console.error('Error in ping API call:', error);
-			return { error: 'Failed to ping API' };
+			console.error('Error in suggest-tags API call:', error);
+			return { error: 'Failed to suggest tags' };
 		}
 	});
 }

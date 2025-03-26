@@ -1,6 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Flex, Button } from "@radix-ui/themes";
-import RadixExample from "~/components/RadixExample";
+import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
 	return [
@@ -9,24 +8,19 @@ export const meta: MetaFunction = () => {
 	];
 };
 
+export const loader: LoaderFunction = async () => {
+	return redirect("/main-menu");
+};
+
 export default function Index() {
-	const handleSuggestTags = () => window.api.suggestTags("moun").then(result => alert(JSON.stringify(result)));
-  
-	return (
-		<Flex direction="column" gap="4" p="4">
-			<Button onClick={handleSuggestTags}>
-				Suggest Tag
-			</Button>
-			
-			<RadixExample />
-		</Flex>
-	);
+	return null;
 }
-  
+
 declare global {
 	interface Window {
 		api: {
 			suggestTags: (prompt: string) => Promise<string>;
+			setApiKey: (apiKey: string) => Promise<{success?: boolean; error?: string}>;
 		};
 	}
-}
+} 

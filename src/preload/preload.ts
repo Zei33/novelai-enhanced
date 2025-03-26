@@ -11,4 +11,7 @@ contextBridge.exposeInMainWorld('api', {
 	suggestTags: async (prompt: string) => {
 		return await ipcRenderer.invoke('suggest-tags', prompt);
 	},
+	setApiKey: async (apiKey: string) => {
+		return await ipcRenderer.invoke('set-api-key', apiKey);
+	},
 });
