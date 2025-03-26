@@ -3,6 +3,9 @@
 	"private": true,
 	"sideEffects": false,
 	"type": "module",
+	"license": "GPL-3.0-or-later",
+	"author": "Zei33",
+	"description": "An enhanced UI interface for generating images using NovelAI.",
 	"scripts": {
 		"build": "remix vite:build && pnpm run build:electron",
 		"build:electron": "pnpm run build:electron:main && pnpm run build:electron:preload",

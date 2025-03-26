@@ -1,40 +1,79 @@
-# Welcome to Remix!
+# NovelAI Enhanced
 
-- 📖 [Remix docs](https://remix.run/docs)
+An enhanced UI interface for generating images using NovelAI.
+
+## Project Overview
+
+This application provides an improved user interface for interacting with NovelAI's image generation capabilities. Built with Electron, React, and Remix, it combines the power of a desktop application with modern web technologies.
+
+## Project Structure
+
+```
+novelai-enhanced/
+├── app/                  # Remix application code
+│   ├── routes/           # Application routes
+│   ├── entry.client.tsx  # Client entry point
+│   ├── entry.server.tsx  # Server entry point
+│   ├── root.tsx          # Root component
+│   └── tailwind.css      # TailwindCSS styles
+├── src/                  # Electron-specific code
+│   ├── main/             # Main process code
+│   └── preload/          # Preload scripts
+├── public/               # Static assets
+└── dist/                 # Build output
+```
+
+## Prerequisites
+
+- Node.js 20 or later
+- pnpm package manager
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+	```bash
+	pnpm install
+	```
 
 ## Development
 
-Run the dev server:
+Run the development server:
 
-```shellscript
-npm run dev
+```bash
+pnpm run dev
 ```
 
-## Deployment
+Run Electron with hot reloading:
 
-First, build your app for production:
-
-```sh
-npm run build
+```bash
+pnpm run dev:electron
 ```
 
-Then run the app in production mode:
+## Building for Production
 
-```sh
-npm start
+Build the application:
+
+```bash
+pnpm run build
 ```
 
-Now you'll need to pick a host to deploy it to.
+## Running the Production Build
 
-### DIY
+```bash
+pnpm run electron
+```
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+## Technologies Used
 
-Make sure to deploy the output of `npm run build`
+- Electron
+- React
+- Remix
+- TypeScript
+- TailwindCSS
+- Vite
 
-- `build/server`
-- `build/client`
+## License
 
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+GPL-3.0-or-later
